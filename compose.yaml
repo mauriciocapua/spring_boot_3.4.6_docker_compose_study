@@ -1,0 +1,18 @@
+
+services:
+  oracle-xe:
+    image: gvenzl/oracle-xe
+    container_name: oracle-xe-demo
+    ports:
+      - "1521:1521"       # Oracle Listener port
+     # - "5500:5500"       # Optional for Enterprise Manager (if enabled)
+    environment:
+      ORACLE_PASSWORD: mysecurepassword    # Required
+      ORACLE_DATABASE: XEPDB1              # Optional custom DB name
+      APP_USER: appuser                    # Optional app user
+      APP_USER_PASSWORD: apppassword       # Optional app user password
+    volumes:
+      - oracle-data:/opt/oracle/oradata    # Persist database data
+
+volumes:
+  oracle-data:
